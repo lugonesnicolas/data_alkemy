@@ -8,6 +8,6 @@
 
 ##### En el mismo realizo la extraccion de datos con un script de python el cual ingresa a la pagina web que aloja el link de descarga, busca en las etiquetas html y los descarga en sus determinadas carpetas con fecha del momento de la descarga.
 
-##### Luego realizo la limpieza de los datos con la libreria pandas en un jupyter notebook en donde, normalizo los datos y preparo para crear las tablas sql.
+##### Luego realizo la limpieza de los datos con la libreria pandas en donde, normalizo los datos y preparo para crear las tablas sql.
 
 
