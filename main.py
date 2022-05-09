@@ -1,5 +1,4 @@
 import logging
-# import pandas
 from multiprocessing.sharedctypes import Value
 import os
 import datetime
@@ -37,14 +36,13 @@ def get_link():
         get_links = soup.find("a", "btn btn-green btn-block") #filtramos la clase y etiqueta
         links = get_links.attrs.get('href') #filtramos el contenedor del link
         link_to_dowload = requests.get(links, stream = True) #leemos el link que contiene la descarga
-        # c_subc = os.path.join("datos/",name,year_month,name + today) #creamos la ruta con nombre y fecha
         c_subc = os.path.join("datos/",name,year_month) #creamos la ruta con nombre y fecha
         os.makedirs(c_subc, exist_ok=True) #creamos el directorio
         with open(c_subc+f'/{name}{today}.csv',"w+b") as csv: #creamos el archivo vacio y lo escribimos
             for i in link_to_dowload.iter_content(chunk_size=1024): #escribimos nuestro archivo
                 if i:
                     csv.write(i)
-        logging.info('Corrio el programa sin fallas, chequear siempre las etiquetas html por si cambian')
+    logging.info('Se crearon los archivos sin fallas, siempre chequear las etiquetas html para dar con los links de descarga ')
 
 
 def menu():
@@ -75,3 +73,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+    logging.info('Se corrio el programa sin problemas')
