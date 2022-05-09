@@ -10,4 +10,6 @@
 
 ##### Luego realizo la limpieza de los datos con la libreria pandas en donde, normalizo los datos y preparo para crear las tablas sql.
 
+#### Para terminar el proceso subo los datos a la base de datos y crea las tablas.
+
 
