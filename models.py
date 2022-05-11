@@ -8,35 +8,38 @@ engine=create_engine("postgresql://postgres:4234@localhost:5432/Alkemy_Challenge
 y ejecutamos nuestros querys"""
 
 
-def bibliotecas_push():
-    with engine.connect() as con:
-        df_data_norm = pd.read_csv("datos/bibliotecas/2022-05/bibliotecas-09-05-2022.csv", sep=",", header=0) 
-        df_data_norm.to_sql(
-            name="bibliotecas",
-            con=engine,
-            index=False,
-            if_exists="replace",
-        )
+def push(name: str,path: str):
+    if name == 'bibliotecas':
+        with engine.connect() as con:
+            df = pd.read_csv(path,sep=',', header=0,encoding='UTF-8')
+            df.to_sql(
+                name="bibliotecas",
+                con=engine,
+                index=False,
+                if_exists="replace",
+            )
+        
+    elif name == 'cines':
+            with engine.connect() as con:
+                df = pd.read_csv(path,sep=',', header=0,encoding='UTF-8')
+                df.to_sql(
+                name="cines",
+                con=engine,
+                index=False,
+                if_exists="replace",
+            )
 
-def cines_push():
-    with engine.connect() as con:
-        df_data_norm = pd.read_csv("datos/cines/2022-05/cines-09-05-2022.csv", sep=",", header=0) 
-        df_data_norm.to_sql(
-            name="cines",
-            con=engine,
-            index=False,
-            if_exists="replace",
-        )
+    else:
+        with engine.connect() as con:
+            name == 'museos'
+            df = pd.read_csv(path,sep=',', header=0,encoding='UTF-8')
+            df.to_sql(
+                name="museos",
+                con=engine,
+                index=False,
+                if_exists="replace",
+            )
 
-def museos_push():
-    with engine.connect() as con:
-        df_data_norm = pd.read_csv("datos/museos/2022-05/museos-09-05-2022.csv", sep=",", header=0) 
-        df_data_norm.to_sql(
-            name="museos",
-            con=engine,
-            index=False,
-            if_exists="replace",
-        )
 def create_tables():
     with engine.connect() as con:
         with open("tables.sql", mode="r") as file:
@@ -44,8 +47,4 @@ def create_tables():
             con.execute(tables)
 
 
-def create():
-    bibliotecas_push()
-    cines_push()
-    museos_push()
-    create_tables()
+
